@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class App {
@@ -12,7 +13,7 @@ public final class App {
     }
 
     public static String dirName = "day08data";
-    public static String fileName = "data.txt";
+    public static String fileName = "idioms.txt";
     public static String dirFileName = dirName + File.separator + fileName;
 
     public static void main(String[] args) throws IOException {
@@ -44,7 +45,12 @@ public final class App {
         Console con = System.console();
         String conInput = "";
 
+        IdiomService idiomSvc = new IdiomService();
+        List<String> idioms = null;
+
         while (!conInput.equalsIgnoreCase("Q")) {
+            String randomIdiom = "";
+
             displayMenu();
             conInput = con.readLine("Enter your selection:");
 
@@ -53,10 +59,15 @@ public final class App {
                     CSVExample();
                     break;
                 case "2":
+                    idioms = new ArrayList<String>();
+                    idiomSvc.readFile(dirFileName);
                     break;
                 case "3":
+                    randomIdiom = idiomSvc.randomIdiom(idioms);
+                    message(randomIdiom);
                     break;
                 case "4":
+                    idiomSvc.showAllIdioms(idioms);
                     break;
                 case "Q":
                 case "q":
