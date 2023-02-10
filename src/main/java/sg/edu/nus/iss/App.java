@@ -48,6 +48,8 @@ public final class App {
         IdiomService idiomSvc = new IdiomService();
         List<String> idioms = null;
 
+        ProfileService ps = new ProfileService();
+
         while (!conInput.equalsIgnoreCase("Q")) {
             String randomIdiom = "";
 
@@ -68,6 +70,9 @@ public final class App {
                     break;
                 case "4":
                     idiomSvc.showAllIdioms(idioms);
+                    break;
+                case "5":
+                    ps.readFile();
                     break;
                 case "Q":
                 case "q":
@@ -117,6 +122,7 @@ public final class App {
         message("2. Read Idioms File");
         message("3. Pick an idiom randomly");
         message("4. List all idioms");
+        message("5. Read text file and check for word");
         message("Q  Quit the program");
     }
 
