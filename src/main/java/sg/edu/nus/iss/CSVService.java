@@ -34,6 +34,7 @@ public class CSVService {
             fw.append(COMMA_DELIMITER);
             fw.append(String.valueOf(emp.getSalary()));
             fw.append(COMMA_DELIMITER);
+            fw.append(NEW_LINE);
         }
 
         fw.flush();
