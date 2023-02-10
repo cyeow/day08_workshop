@@ -60,7 +60,7 @@ public final class App {
                     break;
                 case "2":
                     idioms = new ArrayList<String>();
-                    idiomSvc.readFile(dirFileName);
+                    idioms = idiomSvc.readFile(dirFileName);
                     break;
                 case "3":
                     randomIdiom = idiomSvc.randomIdiom(idioms);
