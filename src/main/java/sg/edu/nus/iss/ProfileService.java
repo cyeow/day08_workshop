@@ -28,12 +28,13 @@ public class ProfileService {
         String scannerInput = scanner.nextLine();
 
         while((line = br.readLine()) != null) {
-            line = line.replaceAll(",", " ");
-            line = line.replaceAll(".", " ");
+            line = line.replace(',', ' ');
+            line = line.replace('.', ' ');
 
             buffer = line.split(" ");
 
             for(String s : buffer) {
+                System.out.println("Word:" + s);
                 if (s.equalsIgnoreCase(scannerInput)) {
                     occurence++;
                 }
@@ -41,9 +42,9 @@ public class ProfileService {
         }
 
         if (occurence == 0) {
-            System.out.printf("Word %s is not found\n", scannerInput);
+            System.out.printf("Word \"%s\" is not found\n\n", scannerInput);
         } else {
-            System.out.printf("Word %s occurs %d number of times", scannerInput, occurence);
+            System.out.printf("Word \"%s\" occurs %d number of times\n\n", scannerInput, occurence);
         }
 
         br.close();
