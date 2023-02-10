@@ -42,7 +42,7 @@ public final class App {
         }
 
         try {
-            FileOutputStream fos = new FileOutputStream(dirFileName);
+            // FileOutputStream fos = new FileOutputStream(dirFileName);
 
             // for (int i = 0; i < 20; i++) {
             //     // writing string in char array
@@ -50,14 +50,19 @@ public final class App {
             //     fos.write('\n');
             // }
 
-            EmployeeService es = new EmployeeService();
-            List<Employee> empList = es.generateEmployees();
-            
-
             // clear the outputstream
             // force data to store to file
-            fos.flush();
-            fos.close();
+            // fos.flush();
+            // fos.close();
+
+            EmployeeService es = new EmployeeService();
+            List<Employee> empList = es.generateEmployees();
+
+            CSVService csvSvc = new CSVService();
+            csvSvc.writeToCSV(empList, dirFileName);
+
+            List<Employee> csvEmpList = csvSvc.readFromCSV(dirFileName);
+            csvEmpList.forEach(emp -> System.out.println(emp));
 
         } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block

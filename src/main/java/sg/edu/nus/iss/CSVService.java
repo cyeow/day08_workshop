@@ -1,7 +1,11 @@
 package sg.edu.nus.iss;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CSVService {
@@ -34,5 +38,34 @@ public class CSVService {
 
         fw.flush();
         fw.close();
+    }
+
+    public List<Employee> readFromCSV(String fullPathFileName) throws IOException {
+
+        FileReader fr = new FileReader(fullPathFileName);
+        BufferedReader br = new BufferedReader(fr);
+        String line = "";
+        List<Employee> employees = new ArrayList<Employee>();
+        
+        // skip the header
+        line = br.readLine();
+
+        while((line = br.readLine()) != null) {
+            // extract the data separated by comma
+            String [] strEmployee = line.split(COMMA_DELIMITER);
+
+            // put it into an employee object
+            // add to employees list object
+            if (strEmployee.length > 0) {
+                Employee emp = new Employee(strEmployee[0], strEmployee[1], strEmployee[2], strEmployee[3], strEmployee[4], Integer.parseInt(strEmployee[5]));
+                employees.add(emp);
+            }
+        }
+
+        br.close();
+        fr.close();
+
+        return employees;
+
     }
 }
